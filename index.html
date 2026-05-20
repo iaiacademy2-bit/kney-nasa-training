@@ -244,7 +244,7 @@ header h1 {
 /* עמודת הידית */
 .lever-col {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
@@ -397,8 +397,10 @@ header h1 {
   margin-bottom: 5px; letter-spacing: .5px;
 }
 .state-desc {
-  font-size:13.5px; color: var(--text2);
+  font-size: 15px; color: var(--text2);
   line-height: 1.7; margin-bottom: 8px;
+  max-width: 260px;
+  overflow-wrap: anywhere;
 }
 .state-badge {
   display: inline-flex; align-items: center; gap: 6px;
@@ -417,6 +419,7 @@ header h1 {
   border-radius: var(--r);
   padding: 12px 14px;
   flex: 1;
+  min-width: 160px;
 }
 .steps-box h4 {
   font-size:19px;
@@ -433,6 +436,8 @@ header h1 {
   padding: 5px 0;
   border-bottom: 1px solid var(--border);
   line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 .step-list li:last-child { border-bottom: none; }
 .step-list li .dot {
@@ -1002,6 +1007,213 @@ header h1 {
 .ml-red     { background: var(--red);   box-shadow: 0 0 14px rgba(212,46,46,.6);  }
 .ml-green   { background: var(--green); box-shadow: 0 0 14px rgba(10,156,106,.6); }
 
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — v3
+   900px / 700px / 480px
+═══════════════════════════════════════════════════ */
+
+/* ── Desktop fix: cockpit wider, steps readable ── */
+@media (min-width: 901px) {
+  .cockpit-side { width: 44%; }
+  .lever-steps-wrap { gap: 10px; }
+}
+
+/* ── 900px ── */
+@media (max-width: 900px) {
+  header { padding: 0 16px; }
+  header h1 { font-size: 11px; }
+  .nav button { padding: 11px 14px; font-size: 12px; }
+
+  /* sim */
+  .cockpit-side { width: 52%; padding: 12px 14px; }
+  .lever-steps-wrap { gap: 8px; padding: 10px; }
+  .steps-box { padding: 10px 10px; }
+  .steps-box h4 { font-size: 14px; }
+  .step-list li { font-size: 12.5px; gap: 7px; }
+
+  /* intro */
+  .ic-content  { padding: 16px 32px 10px; }
+  .intro-nav   { padding: 10px 32px 12px; }
+  .ic-full     { padding: 18px 28px 10px; }
+  .ic-subtitle { max-width: 100%; }
+  .ic-body     { max-width: 100%; }
+  .ic-callout  { max-width: 100%; }
+  .sheet-wrap  { padding: 20px 18px; }
+}
+
+/* ── 750px: stack sim ── */
+@media (max-width: 750px) {
+  .sim-layout {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+  .cockpit-side {
+    width: 100%;
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+    overflow-y: visible;
+    height: auto;
+    max-height: none;
+    padding: 14px 16px;
+  }
+  .video-side {
+    height: auto;
+    overflow-y: visible;
+    padding: 10px;
+  }
+
+  /* lever section stacking */
+  .lever-steps-wrap {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px;
+  }
+  .steps-box { flex: 1; min-width: 140px; }
+  .lever-col { flex-shrink: 0; }
+
+  /* grids */
+  .ic-states-grid { grid-template-columns: repeat(2, 1fr); }
+  .ic-grid        { grid-template-columns: repeat(2, 1fr); }
+  .cs-grid        { grid-template-columns: 1fr; }
+  .ic-state-col   { min-height: unset; height: auto; }
+
+  /* intro */
+  .ic-content     { padding: 14px 20px 10px; }
+  .intro-nav      { padding: 10px 20px 12px; }
+  .ic-full        { padding: 16px 16px 10px; gap: 14px; }
+  .ic-content-cta { padding: 28px 24px; }
+  .ic-subtitle    { max-width: 100%; font-size: 15px; }
+  .ic-title       { font-size: 28px; }
+  .ic-body        { font-size: 14px; max-width: 100%; }
+  .ic-callout     { max-width: 100%; }
+
+  /* nav */
+  .nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 8px;
+    gap: 0;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav button { white-space: nowrap; }
+
+  /* quiz */
+  .card      { position: relative; width: 100%; height: auto; }
+  .quiz-wrap { padding: 16px 14px; }
+
+  /* intro height */
+  .intro-wrap     { height: auto; min-height: calc(100vh - 90px); overflow: visible; }
+  .intro-viewport { min-height: 440px; }
+  .sheet-wrap { padding: 14px 12px; }
+}
+
+/* ── 480px: mobile ── */
+@media (max-width: 480px) {
+  header { padding: 0 10px; height: 44px; gap: 10px; }
+  header .logo { font-size: 11px; padding: 3px 7px; }
+  header h1    { font-size: 10px; }
+
+  .ic-states-grid { grid-template-columns: 1fr; }
+  .ic-grid        { grid-template-columns: 1fr; }
+
+  .ic-content     { padding: 12px 14px 8px; }
+  .intro-nav      { padding: 8px 14px 10px; }
+  .ic-full        { padding: 12px 12px 8px; gap: 12px; }
+  .ic-content-cta { padding: 20px 14px; }
+  .ic-title       { font-size: 22px; }
+  .ic-step        { font-size: 17px; }
+  .ic-body        { font-size: 13.5px; }
+  .ic-subtitle    { font-size: 14px; }
+  .ic-state-col   { padding: 12px 10px; gap: 4px; }
+  .ic-state-col h3 { font-size: 17px; }
+  .sim-cta-btn    { width: 100%; justify-content: center; }
+  .intro-nav-btn  { min-width: 76px; padding: 9px 12px; font-size: 12px; }
+
+  /* cockpit */
+  .cockpit-side  { padding: 10px 12px; }
+  .lever-section { padding: 10px 6px; }
+  .panel-title   { font-size: 10px; }
+  .state-name    { font-size: 14px; }
+  .state-desc    { font-size: 11px; }
+  .steps-box h4  { font-size: 13px; }
+  .step-list li  { font-size: 12px; gap: 6px; }
+
+  /* lever smaller on mobile */
+  .lever-steps-wrap { gap: 10px; padding: 10px 8px; }
+
+  /* video */
+  .video-side { padding: 6px; gap: 8px; }
+
+  /* quiz */
+  .quiz-wrap       { padding: 12px 10px; }
+  .card            { padding: 18px 14px; }
+  .question-text   { font-size: 14.5px; }
+  .opt-btn         { font-size: 12.5px; padding: 11px 12px; }
+  .opt-btn .letter { width: 24px; height: 24px; font-size: 11px; }
+  .next-btn        { font-size: 13px; padding: 10px 20px; }
+
+  /* sheet */
+  .sheet-wrap    { padding: 12px 10px; }
+  .cs-card h3    { font-size: 16px; }
+  .cs-card ul li { font-size: 13px; }
+
+  /* gear info */
+  .gear-info-panel { width: 96%; padding: 12px 14px 12px 28px; }
+}
+
+
+/* ── Sim nav bar ── */
+.sim-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 28px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+/* ── Sim intro instruction ── */
+.sim-instruction {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.65;
+  background: var(--accent-lt);
+  border: 1px solid #c0d5f0;
+  border-right: 3px solid var(--accent);
+  border-radius: var(--r-sm);
+  padding: 9px 13px;
+  margin-bottom: 2px;
+}
+
+/* ── cs-card ordered list (סדר פעולות) ── */
+.cs-card ol { list-style: none; counter-reset: steps-counter; }
+.cs-card ol li {
+  font-size: 16.5px; color: var(--text2);
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; gap: 10px; align-items: flex-start;
+  line-height: 1.55;
+  counter-increment: steps-counter;
+}
+.cs-card ol li:last-child { border-bottom: none; }
+.cs-card ol li::before {
+  content: counter(steps-counter);
+  color: var(--accent);
+  font-weight: 700;
+  font-family: var(--fmono);
+  font-size: 13.5px;
+  min-width: 20px;
+  text-align: center;
+  background: var(--accent-lt);
+  border: 1px solid #c0d5f0;
+  border-radius: 4px;
+  padding: 1px 5px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 </style>
 </head>
 <body>
@@ -1014,8 +1226,8 @@ header h1 {
 <div class="nav">
   <button class="active" onclick="showSection('intro', this)">מבוא</button>
   <button onclick="showSection('sim', this)">סימולטור</button>
+  <button onclick="showSection('sheet', this)">סיכום</button>
   <button onclick="showSection('quiz', this)">בחינה</button>
-  <button onclick="showSection('sheet', this)">דף עזר</button>
 </div>
 
 <!-- ══════════ INTRO ══════════ -->
@@ -1052,10 +1264,9 @@ header h1 {
     </div>
     <div class="ic-content">
       <div class="ic-step">01 — מבוא</div>
-      <div class="ic-title">מה הם <em>כני נסע?</em></div>
+      <div class="ic-title">מהם <em>כני הנסע?</em></div>
       <div class="ic-rule"></div>
-      <p class="ic-body">   כני הנסע מאפשרים להסיע את המטוס על פני הקרקע. הם תומכים במשקלו על הקרקע, מאפשרים המראה ונחיתה בטוחה, ומתקפלים לתוך גוף המטוס בטיסה כדי להפחית גרר.</p>
-      <p class="ic-body" style="margin-top:8px">כני הנסע פועלים בכל המראה ונחיתה תחת עומסים גבוהים ודרישות דיוק מחמירות. הבנת תהליכי הקיפול, הפריסה והנעילה היא בסיס לעבודה בטוחה ומקצועית על המערכת.</p>
+      <p class="ic-body">תפקיד כני הנסע הוא להסיע את המטוס ולבלום זעזועים על פני הקרקע. הם תומכים במשקלו, מבטיחים המראה ונחיתה בטוחות, ומתקפלים לתוך גוף המטוס במהלך הטיסה כדי לצמצם את הגרר. כני הנסע פועלים תחת עומסים גבוהים ודרישות דיוק מחמירות. הבנת תהליכי הקיפול, הפריסה והנעילה של המערכת היא הבסיס לעבודה בטוחה ומקצועית.</p>
 
     </div>
   </div>
@@ -1069,7 +1280,7 @@ header h1 {
         <div class="ic-step">02 — חיווי</div>
         <div class="ic-title"><em>נורות חיווי כני הנסע מתוך תא הטייס</em></div>
         <div class="ic-rule"></div>
-        <p class="ic-subtitle">פנאל כני הנסע בתא הטייס מציג בזמן אמת 3 מצבים אפשרים של כני הנסע</p>
+        <p class="ic-subtitle">תפעול כני נסע מתבצע בדרך כלל על-ידי צוות אוויר ואנשי תחזוקה באמצעות פאנל ייעודי הנמצא בתוך תא הטייס.<br>פאנל כני הנסע מציג בזמן אמת 3 מצבים אפשריים של המערכת:</p>
       </div>
 
       <!-- 3 מצבים עם שרטוט מתאים -->
@@ -1181,7 +1392,8 @@ header h1 {
 
       <div class="panel-title">LG CONTROL PANEL — B777</div>
 
-      <!-- CTA -->
+      <!-- Sim instruction -->
+      <p class="sim-instruction">לפניכם סימולטור המדמה פריסה וקיפול של כני הנסע ואת פאנל השליטה כפי שהוא מוצג בתא הטייס.</p>
       <!-- Lights Pyramid -->
       <div class="lights-pyramid">
         <!-- Top: NOSE -->
@@ -1219,6 +1431,11 @@ header h1 {
         <!-- Lever col — ימין -->
         <div class="lever-col">
 
+          <!-- Instruction — מעל הידית -->
+          <div class="lever-instruction" id="lever-instruction">
+            <strong>הזזת הידית בין UP ל-DN ובחזרה מדמה קיפול ופריסה של כני הנסע</strong>
+          </div>
+
           <!-- Track + כפתורים מימין -->
           <div class="lever-track-container lever-hint" id="lever-hint-zone">
 
@@ -1239,11 +1456,6 @@ header h1 {
               <span class="pos-lbl" id="plbl-DN" onclick="moveLever('DN')">DN</span>
             </div>
 
-          </div>
-
-          <!-- Instruction — בזרימה רגילה -->
-          <div class="lever-instruction" id="lever-instruction">
-            הזזת הידית בין UP ל-DN ובחזרה מדמה קיפול ופריסה של כני הנסע
           </div>
 
           <!-- State info -->
@@ -1283,6 +1495,10 @@ header h1 {
     </div><!-- /video-side -->
 
   </div><!-- /sim-layout -->
+  <div class="sim-nav">
+    <button class="intro-nav-btn" onclick="showSection('intro', document.querySelector('.nav button:first-child'))">→ חזרה למבוא</button>
+    <button class="intro-nav-btn primary" onclick="showSection('sheet', document.querySelector('.nav button[onclick*=sheet]'))">המשך לסיכום ←</button>
+  </div>
 </div>
 
 <!-- ══════════ QUIZ ══════════ -->
@@ -1314,7 +1530,7 @@ header h1 {
     <div class="cs-grid">
       <div class="cs-card">
         <h3>🔼 סדר פעולות – קיפול (UP)</h3>
-        <ul>
+        <ol>
           <li>נעילות מטה (Down-lock) משתחררות</li>
           <li>הגלגלים מפסיקים לפעול (בלמים)</li>
           <li>הכנים מתחילים להתקפל</li>
@@ -1322,17 +1538,17 @@ header h1 {
           <li>כנים נכנסים לגוף המטוס</li>
           <li>נעילות מעלה (Up-lock) ננעלות</li>
           <li>דלתות נסגרות</li>
-        </ul>
+        </ol>
       </div>
       <div class="cs-card">
         <h3>🔽 סדר פעולות – הורדה (DN)</h3>
-        <ul>
+        <ol>
           <li>דלתות נפתחות (לחץ הידראולי)</li>
           <li>נעילות מעלה (Up-lock) משתחררות</li>
           <li>כנים יורדים (הידראולי + כבידה)</li>
           <li>נעילות מטה (Down-lock) ננעלות</li>
           <li>דלתות נשארות פתוחות</li>
-        </ul>
+        </ol>
       </div>
       <div class="cs-card">
         <h3>💡 נורות חיווי בפאנל</h3>
@@ -1379,20 +1595,19 @@ const STATES = {
       'נעילות מטה (Down-lock) משתחררות',
       'גלגלים מפסיקים סיבוב (בלמים)',
       'הכנים מתקפלים כלפי מעלה',
-      'דלתות קולטות את הכנים',
       'נעילות מעלה (Up-lock) ננעלות',
-      'דלתות נסגרות ✓'
+      'דלתות נסגרות'
     ],
     finalLights: 'up'
   },
   OFF: {
     name: 'OFF',
-    desc: 'לחץ הידראולי מנותק לחלוטין ממערכת כני הנסע. הכנים נשמרים במצבם הנוכחי באמצעות נעילות מכניות בלבד.',
+    desc: 'שימו לב: לחץ הידראולי מנותק לחלוטין ממערכת כני הנסע. הכנים נשמרים במצבם הנוכחי באמצעות נעילות מכניות בלבד.',
     badge: ['off', '⚙ OFF — לחץ הידראולי מנותק'],
     title: 'מצב OFF:',
     steps: [
       'אספקת הלחץ ההידראולי מנותקת',
-      'לחץ בקווי המערכת נפרק',
+      'הלחץ בקווי המערכת נפרק',
       'כנים נשמרים במצבם — נעילות מכניות',
       'אין תנועה אפשרית של כני הנסע'
     ],
@@ -1409,7 +1624,7 @@ const STATES = {
       'נעילות מעלה (Up-lock) משתחררות',
       'כנים יורדים (הידראולי + כבידה)',
       'נעילות מטה (Down-lock) ננעלות',
-      'דלתות נשארות פתוחות ✓'
+      'דלתות נשארות פתוחות'
     ],
     finalLights: 'dn'
   }
@@ -1782,10 +1997,10 @@ const questions = [
   {
     q: 'מה מתרחש במערכת כני הנסע מיד לאחר קבלת פקודת הרמת כני נחיתה (LG UP)?',
     opts: [
-      'מנגנוני נעילת מצב "מטה" (Down-lock) משתחררים והכנים נפתחים למקסימום.',
-      'מנגנוני נעילת מצב "מעלה" (Up-lock) משתחררים והכנים מתחילים לרדת.',
+      'מנגנוני נעילת מצב "מטה" (Down-lock) משתחררים והכנים נפתחים למקסימום',
+      'מנגנוני נעילת מצב "מעלה" (Up-lock) משתחררים והכנים מתחילים לרדת',
       'מנגנוני נעילת מצב "מטה" (Down-lock) משתחררים והכנים מתחילים להתקפל.',
-      'מנגנוני נעילת מצב "מעלה" (Up-lock) משתחררים והכנים ננעלים בתוך הגוף.'
+      'מנגנוני נעילת מצב "מעלה" (Up-lock) משתחררים והכנים ננעלים בתוך הגוף'
     ],
     correct: 2,
     explanations: [
@@ -1799,25 +2014,25 @@ const questions = [
     q: 'לאחר ביצוע פעולת הרמת כני הנסע, אחד האורות נותר אדום. מה מציין חיווי זה?',
     opts: [
       'הכן אינו נעול במצבו העליון (Up and Locked).',
-      'דלתות כני הנסע לא נסגרו לאחר קיפולו.',
-      'קיימת תקלה במערכת ההידראולית המונעת את תחילת הקיפול.',
-      'כני הנסע נמצאים בתהליך תנועה (Transit) בין המצבים.'
+      'דלתות כני הנסע לא נסגרו לאחר קיפולו',
+      'קיימת תקלה במערכת ההידראולית, המונעת את תחילת הקיפול',
+      'כני הנסע נמצאים בתהליך תנועה (Transit) בין המצבים'
     ],
     correct: 0,
     explanations: [
       '✅ נכון — נורה אדומה שנותרת דולקת לאחר השלמת הרצף מציינת שאותו כן לא הגיע לנעילה מלאה במצב מעלה (Up and Locked). זהו חיווי תקלה.',
       '❌ שגוי — מצב הדלתות אינו מחווה ישירות על ידי נורות הכני-נסע. הנורות מייצגות את מצב נעילת הכן עצמו.',
-      '❌ שגוי — תקלה הידראולית שמונעת קיפול תגרום לכל הנורות להישאר אדומות (או לא להתחיל כלל). נורה אדומה בודדת מצביעה על כן ספציפי שלא נעל.',
-      '❌ שגוי — בזמן Transit כל הנורות אדומות. אם שאר הנורות כבו ורק אחת נותרת — הכן הסיים את תנועתו אך לא נעל.'
+      '❌ שגוי — תקלה הידראולית שמונעת קיפול תגרום לכל הנורות להישאר אדומות (או לא להתחיל כלל). נורה אדומה בודדת מצביעה על כן ספציפי שלא ננעל.',
+      '❌ שגוי — בזמן Transit כל הנורות אדומות. אם שאר הנורות כבו ורק אחת נותרת — הכן הסיים את תנועתו אך לא ננעל'
     ]
   },
   {
     q: 'באילו מצבים נדלקות הנורות האדומות בפאנל חיווי כני הנסע?',
     opts: [
       'בכל זמן שכני הנסע נמצאים בתנועה (In-Transit) או אינם נעולים במקומם.',
-      'רק כאשר כני הנסע הגיעו לנעילה סופית במצב מטה (Down and Locked).',
-      'כאשר ידית הבורר נמצאת במצב UP, אך הכנים נעולים במצב מעלה.',
-      'כאשר קיימת ירידת לחץ במערכת ההידראולית, ללא קשר למצב הכנים.'
+      'רק כאשר כני הנסע הגיעו לנעילה סופית במצב מטה (Down and Locked)',
+      'כאשר ידית הבורר נמצאת במצב UP, אך הכנים נעולים במצב מעלה',
+      'כאשר קיימת ירידת לחץ במערכת ההידראולית, ללא קשר למצב הכנים'
     ],
     correct: 0,
     explanations: [
@@ -1880,7 +2095,7 @@ function showResults() {
   if (pct === 1)           { msg = '🏆 מצוין! שליטה מלאה'; sub = 'כל התשובות נכונות – מוכן לטיסה!'; }
   else if (score >= 2)     { msg = '👍 טוב מאוד!'; sub = 'חזור על השאלה שטעית בה ועיין בהסבר'; }
   else if (score === 1)    { msg = '📚 עוד קצת עבודה'; sub = 'חזור לסימולטור, עיין בדף העזר ונסה שוב'; }
-  else                     { msg = '🔄 חזור על החומר'; sub = 'עבור שוב על הסימולטור ודף העזר לפני ניסיון נוסף'; }
+  else                     { msg = '🔄 חזור על החומר'; sub = ''; }
   document.getElementById('result-msg').textContent = msg;
   document.getElementById('result-sub').textContent = sub;
 }
